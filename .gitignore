@@ -1,0 +1,81 @@
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Visual Studio working folder
+.vs/
+
+# Backup & Recycle Bin files
+*~
+*.bak
+*.tmp
+*.swp
+
+# ASP.NET temporary files
+**/App_Data/Temp/
+**/App_Data/Logs/
+
+# IIS Express
+.vscode/
+.ionide/
+
+# Rider project files
+.idea/
+
+# DotCover
+*.dotCover
+
+# NuGet
+*.nupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Entity Framework
+*.designer.cs
+*.edmx.sql
+*.edmx.diagram
+
+# Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Dotnet watch
+**/node_modules/
+**/dist/
+
+# Logs
+*.log
+
+# Others
+*.db
+*.db-shm
+*.db-wal
+
+# Ignore JetBrains IDE settings
+.idea/
+
+# Environment files
+.env
+.env.*
+
+# Visual Studio Code
+.vscode/
+
+# GitHub Copilot
+copilot_logs/
+
+# Coverage reports
+coverage/
+*.lcov
