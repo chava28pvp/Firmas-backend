@@ -79,3 +79,8 @@ copilot_logs/
 # Coverage reports
 coverage/
 *.lcov
+
+#Appsettings
+appsettings.*.json
+appsettings.json
+
