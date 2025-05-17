@@ -6,7 +6,9 @@ namespace InfrastructureTemplate.Application.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-        IGenericRepository<Usuario> UsuarioRepository { get; }
+        IGenericRepository<ArchiveUrls> ArchiveUrlsRepository { get; }
+        IGenericRepository<SingularPoint> SingularPointRepository { get; }
+        IGenericRepository<TypesArchive> TypesArchiveRepository { get; }
         Task<int> SaveAsync();
     }
 }

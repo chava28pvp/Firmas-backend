@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +10,7 @@ namespace InfrastructureTemplate.Model
 {
     public class ArchiveUrls
     {
+        [Key]
         public int IdArchiveUrls { get; set; }
         public int IdSingularPoint { get; set; }
         public string PathFile { get; set; } = string.Empty;
@@ -17,6 +20,7 @@ namespace InfrastructureTemplate.Model
 
     public class SingularPoint
     {
+        [Key]
         public int IdSingularPoint { get; set; }
         public int IdTypesArchive { get; set; }
         public string Name { get; set; } = string.Empty;
@@ -33,6 +37,7 @@ namespace InfrastructureTemplate.Model
     }
     public class TypesArchive
     {
+        [Key]
         public int IdTypesArchive { get; set; }
         public string Description { get; set; } = string.Empty;
         public DateTime CreationDate { get; set; }
@@ -41,6 +46,7 @@ namespace InfrastructureTemplate.Model
     }
     public class AssignedOu
     {
+        [Key]
         public int IdAssignedOu { get; set; }
         public int IdSingularPoint { get; set; }
         public string Ou { get; set; } = string.Empty;
@@ -50,6 +56,7 @@ namespace InfrastructureTemplate.Model
     }
     public class AssignedTeam
     {
+        [Key]
         public int IdAssignedTeam { get; set; }
         public int IdAssignedOu { get; set; }
         public int Team { get; set; }
@@ -58,6 +65,7 @@ namespace InfrastructureTemplate.Model
     }
     public class PersonalizedGroup
     {
+        [Key]
         public int IdPersonalizedGroups { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
@@ -69,6 +77,7 @@ namespace InfrastructureTemplate.Model
     }
     public class PersonalizedGroupsOwner
     {
+        [Key]
         public int IdPersonalizedGroupsOwners { get; set; }
         public int IdPersonalizedGroups { get; set; }
         public string WiwOwner { get; set; } = string.Empty;
@@ -77,6 +86,7 @@ namespace InfrastructureTemplate.Model
     }
     public class PersonalizedGroupsUser
     {
+        [Key]
         public int IdPersonalizedGroupsUsers { get; set; }
         public int IdPersonalizedGroups { get; set; }
         public string Wiw { get; set; } = string.Empty;
@@ -86,6 +96,7 @@ namespace InfrastructureTemplate.Model
     }
     public class AssignedPersonalizedGroup
     {
+        [Key]
         public int IdAssignedPersonalizedGroups { get; set; }
         public int IdSingularPoint { get; set; }
         public int IdPersonalizedGroups { get; set; }
@@ -95,6 +106,7 @@ namespace InfrastructureTemplate.Model
     }
     public class RelationsSign
     {
+        [Key]
         public int IdRelationsSigns { get; set; }
         public int IdAssignedAny { get; set; }
         public int IdTypesSigns { get; set; }
@@ -104,6 +116,7 @@ namespace InfrastructureTemplate.Model
     }
     public class TypesSign
     {
+        [Key]
         public int IdTypesSigns { get; set; }
         public string Description { get; set; } = string.Empty;
 
@@ -111,6 +124,7 @@ namespace InfrastructureTemplate.Model
     }
     public class Sign
     {
+        [Key]
         public int IdSign { get; set; }
         public int IdRelationsSigns { get; set; }
         public string WiwSign { get; set; } = string.Empty;
