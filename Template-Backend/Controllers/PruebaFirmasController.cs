@@ -20,30 +20,12 @@ namespace SignsBack.Controllers
         }
 
         [HttpPost]
-        [HttpPost]
         public async Task<IActionResult> Create([FromForm] CreateSingularPointDto dto)
         {
-            if (dto.File == null || dto.File.Length == 0)
-                return BadRequest("El archivo es obligatorio.");
-
             var uploadsFolder = Path.Combine(_env.WebRootPath, "uploads");
-            Directory.CreateDirectory(uploadsFolder);
-
-            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(dto.File.FileName);
-            var fullPath = Path.Combine(uploadsFolder, fileName);
-
-            using (var stream = new FileStream(fullPath, FileMode.Create))
-            {
-                await dto.File.CopyToAsync(stream);
-            }
-
-            // Enviar solo la ruta relativa al servicio
-            var filePathRelative = $"uploads/{fileName}";
-            await _service.CreateSingularPointAsync(dto, filePathRelative);
-
-            return Ok("Guardado correctamente");
+            await _service.CreateSingularPointAsync(dto, uploadsFolder);
+            return Ok();
         }
-
 
     }
 }
