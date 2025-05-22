@@ -1,11 +1,11 @@
-﻿using InfrastructureTemplate.Application.Interfaces;
-using InfrastructureTemplate.Context;
-using InfrastructureTemplate.Model;
-using InfrastructureTemplate.Repository;
-using InfrastructureTemplate.Services;
+﻿using Infrastructure.Application.Interfaces;
+using Infrastructure.Context;
+using Infrastructure.Model;
+using Infrastructure.Repository;
+using Infrastructure.Services;
 using System.Threading.Tasks;
 
-namespace InfrastructureTemplate.UnitOfWork
+namespace Infrastructure.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {

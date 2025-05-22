@@ -1,5 +1,7 @@
-﻿using InfrastructureTemplate.Application.Interfaces;
-using InfrastructureTemplate.Model;
+﻿using Infrastructure.Application.Interfaces;
+using Infrastructure.DTOs;
+using Infrastructure.Model;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace SignsBack.Controllers
@@ -8,42 +10,40 @@ namespace SignsBack.Controllers
     [Route("api/[controller]")]
     public class PruebaFirmasController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly ISingularPointService _service;
+        private readonly IWebHostEnvironment _env;
 
-        public PruebaFirmasController(IUnitOfWork unitOfWork)
+        public PruebaFirmasController(IWebHostEnvironment env, ISingularPointService service)
         {
-            _unitOfWork = unitOfWork;
+            _env = env;
+            _service = service;
         }
-        [HttpPost("assign-file")]
-        public async Task<IActionResult> AssignFile([FromBody] AssignFileRequest request)
+
+        [HttpPost]
+        [HttpPost]
+        public async Task<IActionResult> Create([FromForm] CreateSingularPointDto dto)
         {
-            var singularPoint = await _unitOfWork.SingularPointRepository.GetByIdAsync(request.IdSingularPoint);
+            if (dto.File == null || dto.File.Length == 0)
+                return BadRequest("El archivo es obligatorio.");
 
-            if (singularPoint == null)
-                return NotFound("Singular Point not found.");
+            var uploadsFolder = Path.Combine(_env.WebRootPath, "uploads");
+            Directory.CreateDirectory(uploadsFolder);
 
-            var archive = new ArchiveUrls
+            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(dto.File.FileName);
+            var fullPath = Path.Combine(uploadsFolder, fileName);
+
+            using (var stream = new FileStream(fullPath, FileMode.Create))
             {
-                PathFile = request.PathFile,
-                IdSingularPoint = request.IdSingularPoint
-            };
+                await dto.File.CopyToAsync(stream);
+            }
 
-            await _unitOfWork.ArchiveUrlsRepository.AddAsync(archive);
+            // Enviar solo la ruta relativa al servicio
+            var filePathRelative = $"uploads/{fileName}";
+            await _service.CreateSingularPointAsync(dto, filePathRelative);
 
-            // Actualizar el Singular Point
-            singularPoint.LastUpdateDate = DateTime.UtcNow;
-            _unitOfWork.SingularPointRepository.Update(singularPoint);
-
-            // Guardar todo en una sola transacción
-            await _unitOfWork.SaveAsync();
-
-            return Ok("Archivo asignado correctamente.");
+            return Ok("Guardado correctamente");
         }
-        public class AssignFileRequest
-        {
-            public int IdSingularPoint { get; set; }
-            public string PathFile { get; set; }
-        }
+
 
     }
 }

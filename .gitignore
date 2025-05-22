@@ -84,3 +84,5 @@ coverage/
 appsettings.*.json
 appsettings.json
 
+#wwwroot
+wwwroot/

@@ -1,7 +1,7 @@
-﻿using InfrastructureTemplate.Model;
+﻿using Infrastructure.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace InfrastructureTemplate.Context
+namespace Infrastructure.Context
 {
     public class AppDbContext : DbContext
     {

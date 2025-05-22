@@ -1,8 +1,8 @@
-﻿using InfrastructureTemplate.Model;
+﻿using Infrastructure.Model;
 using System;
 using System.Threading.Tasks;
 
-namespace InfrastructureTemplate.Application.Interfaces
+namespace Infrastructure.Application.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {

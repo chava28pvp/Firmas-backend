@@ -1,6 +1,7 @@
-using InfrastructureTemplate.Application.Interfaces;
-using InfrastructureTemplate.Context;
-using InfrastructureTemplate.UnitOfWork;
+using Infrastructure.Application.Interfaces;
+using Infrastructure.Context;
+using Infrastructure.Services;
+using Infrastructure.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("UserConnection")));
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SignsConnection")));
+builder.Services.AddScoped<ISingularPointService, SingularPointService>();
 
 
 // Inyecciones de dependencias
